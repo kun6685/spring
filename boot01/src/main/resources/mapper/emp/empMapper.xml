@@ -16,7 +16,7 @@
 		       commission_pct,
 		       manager_id,
 		       department_id
-		FROM   employees'
+		FROM   employees
 		<where>
 			<if test="lastName != null and lastName.equals('')">
 				last_name = #{lastName}
