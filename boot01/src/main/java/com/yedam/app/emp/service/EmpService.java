@@ -15,7 +15,7 @@ public interface EmpService {
 	public int empInsert(EmpVO empVO);
 	
 	// 사원정보 단건 수정
-	public Map<String, Object> empUpdate(EmpVO EmpVO);
+	public Map<String, Object> empUpdate(EmpVO empVO);
 	
 	// 사원정보 단건 삭제
 	public Map<String, Object> empDelete(int empId);
