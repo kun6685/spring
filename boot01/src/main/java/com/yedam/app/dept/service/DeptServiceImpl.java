@@ -60,7 +60,6 @@ public class DeptServiceImpl implements DeptService {
 		if(result == 1) {
 			map.put("departmentId", deptId);
 		}
-		
 		return map;
 	}
 

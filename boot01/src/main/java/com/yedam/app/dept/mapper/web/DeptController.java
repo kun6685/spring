@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.app.dept.service.DeptService;
 import com.yedam.app.dept.service.DeptVO;
+import com.yedam.app.emp.service.EmpVO;
 
 @Controller
 public class DeptController {
@@ -62,7 +63,16 @@ public class DeptController {
 		return url;
 	}
 	
-	// 수정 - 페이지
+	// 수정 - 페이지 : Get, 조건이 필요 <=> 단건조회
+	@GetMapping("deptUpdate")
+	public String deptUpdateForm(DeptVO deptVO, Model model) {
+		DeptVO findVO = deptService.deptInfo(deptVO);
+		model.addAttribute("dept", findVO);
+			
+		return "dept/update";
+	}
+	
+	// 수정 - 처리 : Post, AJAX => QueryString
 	@ResponseBody
 	public Map<String, Object>
 		deptUpdateAJAXQueryString(DeptVO deptVO) {

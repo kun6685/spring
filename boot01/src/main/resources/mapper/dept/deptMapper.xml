@@ -5,19 +5,21 @@
 	<!-- 전체조회 -->
 	<select id="selectDeptAll" resultType="DeptVO">
 		SELECT department_id
-		,department_name
-		,manager_id
-		,location_id
+		, department_name
+		, manager_id
+		, location_id
 		FROM departments
 		ORDER BY department_id
 	</select>
 	
 	<!-- 단건조회 -->
 	<select id="selectDeptInfo" resultType="DeptVO">
-		SELECT department_id,
-		       department_name
+		SELECT department_id
+		       , department_name
+		       , manager_id
+		       , location_id
 		FROM   departments
-		WHERE  department_id = ${departmentId}
+		WHERE  department_id = #{departmentId}
 	</select>
 	
 	<!-- 등록 -->
@@ -35,8 +37,20 @@
 	<!-- 수정 -->
 	<update id="updateDeptInfo">
 		UPDATE departments
-		SET department_name = #{dept.departmentName}
-		WHERE department_id = #{departmentId}
+		SET    department_id = #{dept.departmentId}
+			  
+			  <if test="dept.departmentName != null and !dept.departmentName.equals('')">
+		    , department_name = #{dept.departmentName}
+		      </if>
+		      
+		      <if test="dept.managerId != null and !dept.managerId.equals('')">     
+		    , manager_id = #{dept.managerId}
+		      </if>
+		      
+		      <if test="dept.locationId != null and !dept.locationId.equals('')">
+		    , location_id = #{dept.locationId}
+		      </if>
+		WHERE department_id = #{dept.departmentId}
 	</update>
 	
 	<!-- 삭제 -->
